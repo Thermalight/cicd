@@ -5,7 +5,7 @@ on:
 
 jobs:
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/docker-ci-generic.yml@repository-prefix
+    uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@repository-prefix
     with:
       version: 1.2.3
       latest-tag: true
