@@ -11,5 +11,5 @@ jobs:
       latest-tag: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-      registry-username: ${{ github.actor }}
+      registry-username: 'MLenterman'
       registry-token: ${{ secrets.REGISTRY_PAT }}
