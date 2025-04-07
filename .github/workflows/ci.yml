@@ -1,0 +1,16 @@
+name: Test CI Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: wearefrank/ci-cd-templates/.github/workflows/docker-ci-generic.yml@repository-prefix
+    with:
+      docker-image-repo: wearefrank
+      docker-image-name: zaakbrug
+      registry-prefix: docker.io  # 👈 Try ghcr.io, docker.io, or leave out
+      version: 1.2.3
+      latest-tag: true
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

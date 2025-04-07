@@ -1,0 +1,14 @@
+services:
+  frank:
+    extends:
+      file: docker-compose.yaml
+      service: frank
+    build:
+      context: .
+      pull: true
+      args:
+        FF_VERSION: ${FF_VERSION:-latest}
+
+volumes:
+  frank-logs:
+  frank-h2db-data:

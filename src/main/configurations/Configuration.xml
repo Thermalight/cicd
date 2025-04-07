@@ -1,0 +1,14 @@
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="Frank2Example">
+        <Receiver name="Frank2Example">
+            <JavaListener name="Frank2ExampleListener" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+            </Exits>
+            <EchoPipe name="return" />
+        </Pipeline>
+    </Adapter>
+</Configuration>

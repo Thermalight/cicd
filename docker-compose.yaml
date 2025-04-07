@@ -1,0 +1,47 @@
+services:
+  frank:
+    build:
+      context: .
+      args:
+        FF_VERSION: ${FF_VERSION:-latest}
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      application.server.type.custom: ${TRANSACTION_MANAGER:-NARAYANA}
+      credentialFactory.class: nl.nn.credentialprovider.PropertyFileCredentialFactory
+      credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
+      TZ: ${TIME_ZONE:-Europe/Amsterdam}
+      jdbc.migrator.active: true
+      ladybug.jdbc.migrator.active: true
+      ibistesttool.maxStorageSize: -1
+      ibistesttool.maxStorageDays: 30
+    env_file:
+      - .env
+    develop:
+      watch:
+        - action: sync
+          path: ./src/main/configurations
+          target: /opt/frank/configurations
+        - action: sync
+          path: ./src/main/resources
+          target: /opt/frank/resources
+        - action: sync
+          path: ./src/test/testtool
+          target: /opt/frank/testtool
+        - action: sync+restart
+          path: ./src/main/resources/DeploymentSpecifics.properties
+          target: /opt/frank/resources/DeploymentSpecifics.properties
+        - action: sync+restart
+          path: ./src/main/resources/ladybug/DatabaseChangelog_Custom.xml
+          target: /opt/frank/resources/ladybug/DatabaseChangelog_Custom.xml
+        - action: sync+restart
+          path: ./src/main/resources/springIbisTestToolCustom.xml
+          target: /opt/frank/resources/springIbisTestToolCustom.xml
+        - action: sync+restart
+          path: ./src/main/secrets
+          target: /opt/frank/secrets
+        - action: rebuild
+          path: ./src/main/java
+        - action: rebuild
+          path: ./src/main/webapp/META-INF/context.xml
+    restart: unless-stopped
