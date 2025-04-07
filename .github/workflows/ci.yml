@@ -7,9 +7,8 @@ jobs:
   ci:
     uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@repository-prefix
     with:
-      version: 1.2.3
+      version: 1.2.4
       latest-tag: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-      registry-username: 'MLenterman'
       registry-token: ${{ secrets.REGISTRY_PAT }}
