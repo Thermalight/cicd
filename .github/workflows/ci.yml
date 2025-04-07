@@ -11,5 +11,5 @@ jobs:
       latest-tag: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-      dockerhub-token: ${{ secrets.REGISTRY_PAT }}
+      dockerhub-token: ${{ secrets.GITHUB_TOKEN }}
       dockerhub-username: ${{ secrets.REGISTRY_USER }}
